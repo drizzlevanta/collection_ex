@@ -5,28 +5,30 @@
 pub fn demo() {
     let test_pig_latin = String::from("firsttime");
 
-    let pig_latin = pig_latin(&test_pig_latin);
+    let pig_latin_test = pig_latin(&test_pig_latin);
 
-    println!("pig latin for {} is {}", test_pig_latin, pig_latin);
+    println!("pig latin for {} is {}", test_pig_latin, pig_latin_test);
+
+    let text = "hello apple hello world";
+    println!("pig latin for \n {} is: \n {}", text, pig_latin_text(text));
+}
+
+fn pig_latin_text(s: &str) -> String {
+    let mut pig_latin_text: String = String::new(); //creates an empty string
+    let mut words = s.split_whitespace().peekable();
+    while let Some(word) = words.next() {
+        //iterate while there is a word
+        pig_latin_text.push_str(&pig_latin(word));
+        if let Some(_) = words.peek() {
+            //if there is a next word, add space
+            pig_latin_text.push(' ');
+        }
+    }
+    pig_latin_text
 }
 
 fn pig_latin(word: &str) -> String {
     let mut ch_iter = word.chars().peekable(); //peekable iterator
-                                               //ignore the first char
-                                               // let first_ch = pig.next().unwrap();
-                                               // pig.push('a');
-                                               // pig.push('y');
-
-    //find first char
-    // let first_ch = ch_iter.peek().unwrap();
-    // let suffix = match first_ch {
-    //     'a' | 'e' | 'i' | 'o' | 'u' => String::from("hay"),
-    //     _ => {
-    //         //skip first char
-    //         ch_iter.next();
-    //         first_ch.to_string() + "ay"
-    //     }
-    // };
 
     let mut s = String::new();
     let mut suffix = None;
