@@ -14,8 +14,11 @@ pub fn demo() {
 }
 
 fn pig_latin_text(s: &str) -> String {
-    let mut pig_latin_text: String = String::new(); //creates an empty string
-    let mut words = s.split_whitespace().peekable();
+    //creates an empty string
+    let mut pig_latin_text: String = String::new();
+
+    //remove white space and create an iterator
+    let mut words = s.trim().split_whitespace().peekable();
     while let Some(word) = words.next() {
         //iterate while there is a word
         pig_latin_text.push_str(&pig_latin(word));
