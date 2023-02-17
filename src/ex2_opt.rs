@@ -21,6 +21,6 @@ fn pig_latin(word: &str) -> String {
     match first_ch {
         Some('a' | 'e' | 'i' | 'o' | 'u') => format!("{}-hay", word),
         None => String::new(),
-        _ => format!("{}{}-ay", iter.collect::<String>(), first_ch.unwrap()), //using collect to make a String
+        _ => format!("{}{}ay", iter.collect::<String>(), first_ch.unwrap()), //using collect to make a String
     }
 }
