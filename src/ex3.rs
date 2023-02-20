@@ -33,7 +33,12 @@ impl Company {
     }
 
     fn all_staff(&self) -> Vec<(&String, &String)> {
-        //TODO try binaryheap
+        //sort Hashmap by converting to a vector first
+        let mut hash_vec: Vec<(&String, &String)> = self.staff.iter().collect();
+        hash_vec.sort_by(|a, b| a.1.cmp(b.1));
+        hash_vec
+
+        //try binaryheap
         // let heap: BinaryHeap<_> = self.staff.iter().collect();
         // heap.into_sorted_vec()
 
@@ -41,11 +46,6 @@ impl Company {
         // let btree_map: BTreeMap<&String, &String> =
         //     self.staff.iter().map(|(k, v)| (v, k)).collect();
         // btree_map
-
-        //sort Hashmap by converting to a vector first
-        let mut hash_vec: Vec<(&String, &String)> = self.staff.iter().collect();
-        hash_vec.sort_by(|a, b| a.1.cmp(b.1));
-        hash_vec
     }
 }
 
@@ -100,21 +100,5 @@ fn take_inputs() {
                 println!("Unsupported command!");
             }
         }
-        // match action.to_lowercase().as_str() {
-        //     "add" => {
-        //         company.add(&input);
-        //     }
-        //     "query" => {
-        //         //TODO format printout
-        //         println!("Listing all staff: {:?}", company.all_staff());
-        //     }
-
-        //     "exit" => {
-        //         process::exit(0);
-        //     }
-        //     _ => {
-        //         println!("Unsupported command!");
-        //     }
-        // }
     }
 }
